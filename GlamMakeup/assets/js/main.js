@@ -36,34 +36,34 @@ function init_date(){
 function calculate(){
 
   var total_price = 0,
-      total_tax = 0;
+      total_tax = 0,
+      des = 0;
   
   console.log('CALCULATING - Tax Rate:'+TAX_RATE);
 
   $('.invoicelist-body tbody tr').each( function(){
     var row = $(this),
+        desc = row.find('.desc input').val(),
         rate   = row.find('.rate input').val(),
         amount = row.find('.amount input').val();
-    
     var sum = rate * amount;
     var tax = ((sum / (TAX_RATE+100) ) * TAX_RATE);
-    
-    
-    total_price = total_price + sum;
+    var deso = desc*1;
+    total_price = (total_price + sum)-deso;
     total_tax = total_tax + tax;
-    
+    des = (des + deso)*1;
     row.find('.sum').text( sum.toFixed(2) );
-    row.find('.tax').text( tax.toFixed(2) );   
+    row.find('.tax').text( tax.toFixed(2) );      
+    row.find('.deso').text( deso.toFixed(2) );
   });
 
   $('#total_price').text(total_price.toFixed(2));
   $('#total_tax').text(total_tax.toFixed(2));
-  
-
+  $('#des').text(des.toFixed(2));
 }
 
 
-var newRow = '<tr><td><a class="control removeRow" href="#">x</a><span contenteditable>12345</span></td><td><span contenteditable>Descripción</span></td><td class="amount"><input type="text" value="1"/></td><td class="rate"><input type="text" value="99" /></td><td class="tax taxrelated"></td><td class="sum"></td></tr>';
+var newRow = '<tr><td><a class="control removeRow" href="#">x</a><span contenteditable>12345</span></td><td><span contenteditable>Descripción</span></td> <td class="desc"><input type="text" value="0"></td><td class="amount"><input type="text" value="1"/></td><td class="rate"><input type="text" value="99" /></td><td class="tax taxrelated"></td><td class="sum"></td></tr>';
 
 $('.invoicelist-body').on('keyup','input',function(){
   calculate();
