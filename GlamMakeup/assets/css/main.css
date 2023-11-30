@@ -1,4 +1,4 @@
-﻿/*! normalize.css v3.0.2 | MIT License | git.io/normalize */
+/*! normalize.css v3.0.2 | MIT License | git.io/normalize */
 
 html {
     font-family: sans-serif;
@@ -467,10 +467,12 @@ h1 {
 }
 
 .rate:before,
+.desc:before,
 .price:before,
 .sum:before,
 .tax:before,
 #total_price:before,
+#des:before,
 #total_tax:before {
     content: '$'
 }
@@ -564,7 +566,10 @@ h1 {
     font-size: 2rem;
     color: #7044BF
 }
-
+.invoicelist-footer table #des {
+    font-size: 1rem;
+    color: #bf4444
+}
 .note {
     margin: 1rem
 }
